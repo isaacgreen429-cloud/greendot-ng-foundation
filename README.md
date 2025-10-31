@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Greendot Ng Foundation</title>
+    <title>Greendot_Ng_Foundation</title>
     <meta name="description" content="Greendot Ng Foundation empowers lives through education, cancer support, and community welfare across Nigeria.">
     <meta name="keywords" content="Greendot Ng Foundation, NGO Nigeria, Charity, Education, Cancer Support, Community Welfare">
     <meta name="author" content="Greendot Ng Foundation">
