@@ -1,0 +1,80 @@
+{
+  "name": "greendot-admin",
+  "private": true,
+  "dependencies": {
+    "firebase": "^9.22.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  }
+}
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: "YOUR_FIREBASE_API_KEY",
+  authDomain: "your-project.firebaseapp.com",
+  projectId: "your-project-id",
+  // ... rest of config
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+import React, {useState, useEffect} from 'react';
+import { auth, db } from './firebaseConfig';
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
+
+function App(){
+  const [user, setUser] = useState(null);
+  const [donations, setDonations] = useState([]);
+
+  async function login(e){
+    e.preventDefault();
+    const email = e.target.email.value;
+    const pass = e.target.password.value;
+    try {
+      const cred = await signInWithEmailAndPassword(auth, email, pass);
+      setUser(cred.user);
+    } catch(err){ alert(err.message) }
+  }
+  async function logout(){ await signOut(auth); setUser(null); setDonations([]); }
+
+  async function loadDonations(){
+    const snap = await getDocs(collection(db, 'donations'));
+    setDonations(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+  }
+
+  useEffect(()=>{ if(user) loadDonations(); }, [user]);
+
+  if(!user) return (
+    <div style={{maxWidth:480, margin:'3rem auto'}}>
+      <h2>Admin Login</h2>
+      <form onSubmit={login}>
+        <input name="email" type="email" placeholder="email" />
+        <input name="password" type="password" placeholder="password" />
+        <button>Sign in</button>
+      </form>
+    </div>
+  );
+
+  return (
+    <div style={{padding:20}}>
+      <h2>Greendot Admin</h2>
+      <button onClick={logout}>Sign out</button>
+      <h3>Donations</h3>
+      <button onClick={loadDonations}>Reload</button>
+      <ul>
+        {donations.map(d => <li key={d.id}>{d.name || d.email} — ₦{d.amount} — {d.ref || '-'}</li>)}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
