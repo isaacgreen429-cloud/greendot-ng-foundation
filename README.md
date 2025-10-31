@@ -156,7 +156,7 @@
         e.preventDefault();
 
         let handler = PaystackPop.setup({
-          key: "pk_test_yourPublicKeyHere", // Replace with your Paystack public key
+          key: "pk_test_15359ac9d5720105683603c9bcf2a22fd80d8131", // Replace with your Paystack public key
           email: document.getElementById("donorEmail").value,
           amount: document.getElementById("donationAmount").value * 100,
           currency: "NGN",
