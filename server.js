@@ -6,10 +6,10 @@ const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const PAYSTACK_SECRET = pk_test_15359ac9d5720105683603c9bcf2a22fd80d8131; // secret key on server
+const PAYSTACK_SECRET = sk_test_d4093090a0dc02cec8a9e0d88ac07632e8e200d9; // secret key on server
 
 if (!PAYSTACK_SECRET) {
-  console.error('pk_test_15359ac9d5720105683603c9bcf2a22fd80d8131');
+  sk_test_d4093090a0dc02cec8a9e0d88ac07632e8e200d9;
   process.exit(1);
 }
 
