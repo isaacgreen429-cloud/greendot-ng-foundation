@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greendot_Ng_Foundation | Empowering Lives, Inspiring Hope</title>
+  <link rel="stylesheet" href="styles/custom.css">
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <style>
+    body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
+    header, footer { background: #004d26; color: white; }
+    .container { width: 90%; margin: 0 auto; max-width: 1200px; }
+    nav ul { display: flex; list-style: none; padding: 0; }
+    nav ul li { margin-right: 20px; }
+    nav ul li a { color: white; text-decoration: none; font-weight: 500; }
+    section { padding: 60px 0; }
+    .btn { background: #00a859; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; }
+    .btn:hover { background: #00904d; }
+    .hero { position: relative; height: 90vh; }
+    .hero video { width: 100%; height: 100%; object-fit: cover; }
+    .hero .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
+    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .whatsapp-float img { width: 35px; height: 35px; }
+    footer { text-align: center; padding: 20px; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0;">
+        <img src="images/logo.png" alt="Greendot Foundation Logo" style="height: 60px;">
+        <nav>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#donate">Donate</a></li>
+            <li><a href="#membership">Join Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <video autoplay muted loop playsinline poster="images/hero-banner.jpg">
+      <source src="videos/hero-intro.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">
+      <img src="images/logo.png" alt="Greendot Foundation Logo" style="height: 80px; margin-bottom: 10px;">
+      <h1>Empowering Lives, Inspiring Hope</h1>
+      <p style="max-width: 600px;">Greendot_Ng_Foundation is dedicated to supporting children and vulnerable communities through education, healthcare, and empowerment programs.</p>
+      <button class="btn" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Donate Now</button>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="container">
+    <h2>About Us</h2>
+    <p>Greendot_Ng_Foundation is a non-profit organization committed to helping children in need, supporting education, and improving living conditions in underserved communities across Nigeria. We believe every child deserves hope, health, and a future.</p>
+    <img src="images/about-us.jpg" alt="About Greendot Foundation" style="width:100%; border-radius:12px;">
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="container">
+    <h2>Our Projects</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+      <div><img src="images/project-education.jpg" style="width:100%;border-radius:10px;"><h3>Education Support</h3></div>
+      <div><img src="images/project-health.jpg" style="width:100%;border-radius:10px;"><h3>Health Awareness</h3></div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section id="events" class="container">
+    <h2>Upcoming Events</h2>
+    <img src="images/event-children-day.jpg" style="width:100%;border-radius:10px;">
+    <p>Join us this Children’s Day as we celebrate with kids across local communities with gifts, games, and educational talks.</p>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog" class="container">
+    <h2>Latest from Our Blog</h2>
+    <p>Stay updated with inspiring stories, success testimonials, and foundation updates.</p>
+    <a href="#" class="btn">Visit Blog</a>
+  </section>
+
+  <!-- DONATION FORM -->
+  <section id="donate" class="container">
+    <h2>Support Our Mission</h2>
+    <p>Your donations make a lasting difference. Every contribution helps us reach more children in need.</p>
+    <form id="donationForm">
+      <input type="text" id="email" placeholder="Your Email" required style="padding:10px;width:100%;margin-bottom:10px;">
+      <input type="number" id="amount" placeholder="Amount (NGN)" required style="padding:10px;width:100%;margin-bottom:10px;">
+      <button type="submit" class="btn">Donate with Paystack</button>
+    </form>
+  </section>
+
+  <!-- MEMBERSHIP -->
+  <section id="membership" class="container">
+    <h2>Become a Member</h2>
+    <p>Join Greendot_Ng_Foundation and be part of our growing community of changemakers.</p>
+    <form>
+      <input type="text" placeholder="Full Name" required style="padding:10px;width:100%;margin-bottom:10px;">
+      <input type="email" placeholder="Email Address" required style="padding:10px;width:100%;margin-bottom:10px;">
+      <input type="tel" placeholder="Phone Number" required style="padding:10px;width:100%;margin-bottom:10px;">
+      <button class="btn">Register</button>
+    </form>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container">
+    <h2>Contact Us</h2>
+    <p>Email: greendotngfoundation@gmail.com</p>
+    <p>Phone: +234 803 354 4831</p>
+    <p>Follow us:
+      <a href="#">Facebook</a> |
+      <a href="#">Instagram</a> |
+      <a href="#">Twitter</a>
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Greendot_Ng_Foundation. All Rights Reserved.</p>
+  </footer>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/2348033544831" target="_blank" class="whatsapp-float">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Chat">
+  </a>
+
+  <!-- PAYSTACK SCRIPT -->
+  <script>
+    const PAYSTACK_PUBLIC_KEY = 'pk_test_15359ac9d5720105683603c9bcf2a22fd80d8131'; // Replace with your live key in production
+
+    const form = document.getElementById('donationForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const amount = document.getElementById('amount').value;
+
+      if (!amount || amount <= 0) {
+        alert('Please enter a valid donation amount.');
+        return;
+      }
+
+      const handler = PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY,
+        email: email,
+        amount: Math.round(amount * 100),
+        currency: 'NGN',
+        ref: 'GDF-' + Math.floor((Math.random() * 1000000000) + 1),
+        callback: function(response) {
+          alert('Thank you for your donation! Reference: ' + response.reference);
+          form.reset();
+        },
+        onClose: function() {
+          alert('Donation window closed.');
+        }
+      });
+      handler.openIframe();
+    });
+  </script>
+
+</body>
+</html>
