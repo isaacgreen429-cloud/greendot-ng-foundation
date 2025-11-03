@@ -1,0 +1,55 @@
+/* style.css – Greendot_Ng_Foundation */
+
+/* ---------- GLOBAL STYLES ---------- */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1.5s ease forwards;
+}
+
+/* ---------- SECTION SPACING ---------- */
+section {
+  animation: fadeIn 1s ease forwards;
+}
+
+/* ---------- BUTTON EFFECTS ---------- */
+button, a {
+  transition: all 0.3s ease-in-out;
+}
+
+/* ---------- HERO SECTION ---------- */
+video {
+  filter: brightness(70%);
+}
+
+h1, h2, h3 {
+  letter-spacing: 0.5px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background: linear-gradient(135deg, #166534, #065f46);
+}
+
+/* ---------- HOVER EFFECTS ---------- */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* ---------- CARD EFFECTS ---------- */
+.shadow-lg:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease-in-out;
+}
