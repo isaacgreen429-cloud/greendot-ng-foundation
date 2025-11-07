@@ -80,6 +80,23 @@
     </form>
   </section>
 
+  // Membership registration endpoint
+app.post("/register-member", (req, res) => {
+  const member = req.body;
+  member.date = new Date().toISOString();
+
+  let members = [];
+  if (fs.existsSync("members.json")) {
+    members = JSON.parse(fs.readFileSync("members.json"));
+  }
+
+  members.push(member);
+  fs.writeFileSync("members.json", JSON.stringify(members, null, 2));
+
+  console.log("👤 New member registered:", member);
+  res.status(200).json({ success: true, message: "Member registered successfully!" });
+});
+
   <!-- CONTACT -->
   <footer class="bg-green-800 text-white py-10 text-center">
     <img src="hero-poster.jpg" alt="logo" class="mx-auto w-16 h-16 rounded-full mb-4">
@@ -92,44 +109,6 @@
       <a href="#" class="hover:text-green-300">YouTube</a>
     </div>
     <p class="mt-4 text-sm opacity-80">© 2025 Greendot_Ng_Foundation. All rights reserved.</p>
-    <!-- MEMBERSHIP REGISTRATION -->
-<section id="membership" class="py-20 bg-white text-center">
-  <h2 class="text-3xl font-bold mb-6">Become a Member</h2>
-  <p class="max-w-xl mx-auto mb-10">Join us and be part of a community dedicated to helping children and building a brighter future.</p>
-
-  <form id="membershipForm" class="max-w-lg mx-auto bg-gray-50 shadow-lg rounded-xl p-8">
-    <input type="text" id="m_name" placeholder="Full Name" class="w-full p-3 mb-3 border rounded-lg" required>
-    <input type="email" id="m_email" placeholder="Email Address" class="w-full p-3 mb-3 border rounded-lg" required>
-    <input type="text" id="m_phone" placeholder="Phone Number" class="w-full p-3 mb-3 border rounded-lg" required>
-    <input type="text" id="m_location" placeholder="City / State" class="w-full p-3 mb-3 border rounded-lg" required>
-    <textarea id="m_reason" placeholder="Why do you want to join?" class="w-full p-3 mb-4 border rounded-lg" rows="4" required></textarea>
-    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white p-3 rounded-lg font-semibold transition-all">Submit Membership Form</button>
-  </form>
-
-  <p class="mt-6 text-gray-700 text-sm">We will contact you within 48 hours after submission.</p>
-</section>
-
-<script>
-document.getElementById('membershipForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  fetch('/register-member', {
-    method: 'POST',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name: document.getElementById('m_name').value,
-      email: document.getElementById('m_email').value,
-      phone: document.getElementById('m_phone').value,
-      location: document.getElementById('m_location').value,
-      reason: document.getElementById('m_reason').value
-    })
-  })
-  .then(res => res.json())
-  .then(data => {
-    alert("✅ Membership Form Submitted Successfully!");
-    document.getElementById('membershipForm').reset();
-  });
-});
-      </script>
   </footer>
 
   <!-- WHATSAPP BUTTON -->
