@@ -9,6 +9,23 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname)); // serve index.html and assets
 
+// Membership registration endpoint
+app.post("/register-member", (req, res) => {
+  const member = req.body;
+  member.date = new Date().toISOString();
+
+  let members = [];
+  if (fs.existsSync("members.json")) {
+    members = JSON.parse(fs.readFileSync("members.json"));
+  }
+
+  members.push(member);
+  fs.writeFileSync("members.json", JSON.stringify(members, null, 2));
+
+  console.log("👤 New member registered:", member);
+  res.status(200).json({ success: true, message: "Member registered successfully!" });
+});
+
 // Donation endpoint
 app.post("/donate", (req, res) => {
   const donation = req.body;
@@ -29,20 +46,3 @@ app.post("/donate", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-
-// Membership registration endpoint
-app.post("/register-member", (req, res) => {
-  const member = req.body;
-  member.date = new Date().toISOString();
-
-  let members = [];
-  if (fs.existsSync("members.json")) {
-    members = JSON.parse(fs.readFileSync("members.json"));
-  }
-
-  members.push(member);
-  fs.writeFileSync("members.json", JSON.stringify(members, null, 2));
-
-  console.log("👤 New member registered:", member);
-  res.status(200).json({ success: true, message: "Member registered successfully!" });
-});
