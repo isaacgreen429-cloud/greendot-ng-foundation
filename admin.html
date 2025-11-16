@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Greendot Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+<div id="auth" class="text-center">
+  <h1 class="text-2xl font-bold mb-4">Admin Login</h1>
+  <input id="adminPass" type="password" placeholder="Enter Passcode" class="p-3 border rounded">
+  <button onclick="auth()" class="bg-green-700 text-white px-4 py-2 ml-2 rounded">Login</button>
+</div>
+
+<div id="dashboard" class="hidden">
+  <h1 class="text-3xl font-bold mb-6">Greendot Admin Dashboard</h1>
+
+  <h2 class="text-2xl font-semibold mt-6 mb-2">Donations</h2>
+  <table class="w-full bg-white shadow rounded" id="donationTable"></table>
+
+  <h2 class="text-2xl font-semibold mt-10 mb-2">Members</h2>
+  <table class="w-full bg-white shadow rounded" id="memberTable"></table>
+</div>
+
+<script>
+function auth() {
+  if (document.getElementById('adminPass').value === "greendotadmin2025") {
+    document.getElementById('auth').classList.add('hidden');
+    document.getElementById('dashboard').classList.remove('hidden');
+    loadData();
+  } else alert("❌ Incorrect Passcode");
+}
+
+function loadData() {
+  fetch('/donations.json')
+  .then(res => res.json())
+  .then(data => {
+    let table = "<tr><th class='p-2'>Name</th><th>Amount</th><th>Date</th></tr>";
+    data.forEach(d => { table += `<tr><td>${d.name}</td><td>${d.amount}</td><td>${d.date}</td></tr>` });
+    document.getElementById('donationTable').innerHTML = table;
+  });
+
+  fetch('/members.json')
+  .then(res => res.json())
+  .then(data => {
+    let table = "<tr><th class='p-2'>Name</th><th>Email</th><th>Phone</th><th>Date</th></tr>";
+    data.forEach(m => { table += `<tr><td>${m.name}</td><td>${m.email}</td><td>${m.phone}</td><td>${m.date}</td></tr>` });
+    document.getElementById('memberTable').innerHTML = table;
+  });
+}
+</script>
+
+</body>
+  </html>
