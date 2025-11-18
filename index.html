@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Greendot NG Foundation | Empowering Lives, Building Futures</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            greendot: { 50:'#f0fdf4',100:'#dcfce7',300:'#86efac',500:'#10b981',700:'#059669' },
+            reddot:  { 50:'#fff1f2',100:'#ffe4e6',300:'#fda4af',500:'#ef4444',700:'#dc2626' },
+            orangedot:{50:'#fff7ed',100:'#ffedd5',300:'#fdba74',500:'#fb923c',700:'#f97316'}
+          },
+          boxShadow: { 'xl-soft':'0 15px 30px rgba(2,6,23,0.08)' }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent-grad: linear-gradient(90deg,#10b981 0%,#fb923c 50%,#ef4444 100%);
+    }
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:#f8fafc}
+    .accent-text{background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .float-btn{position:fixed;right:16px;bottom:16px;z-index:60}
+    .float-btn--help{right:92px;bottom:16px}
+    .hero-video{min-height:340px}
+    .certificate{border:6px double #e6e6e6;padding:24px;background:#fff}
+    /* dark mode */
+    .dark-mode{background:#0b1220;color:#e6eef8}
+    .dark-mode a{color: #93c5fd}
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-50 bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="#home" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-greendot-500 flex items-center justify-center shadow"><span class="w-2 h-2 rounded-full bg-white block"></span></div>
+          <div>
+            <div class="text-lg font-extrabold">Greendot NG</div>
+            <div class="text-xs text-gray-500 -mt-1">Empowering Lives, Building Futures</div>
+          </div>
+        </a>
+
+        <nav id="navDesktop" class="hidden md:flex items-center gap-4 text-sm font-medium">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#who" class="nav-link">Who We Are</a>
+          <a href="#programs" class="nav-link">Programs</a>
+          <a href="#donate" class="nav-link">Donate</a>
+          <a href="#events" class="nav-link">Events</a>
+          <a href="#blog" class="nav-link">Blog</a>
+          <a href="#member" class="nav-link">Become a Member</a>
+          <a href="#help" class="nav-link">Need Help</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button id="searchToggle" class="p-2 rounded-md hover:bg-gray-100" title="Search">
+            🔍
+          </button>
+          <button id="themeToggle" class="p-2 rounded-md hover:bg-gray-100" title="Toggle dark mode">🌓</button>
+          <a href="#donate" class="hidden md:inline-block px-5 py-2 rounded-full bg-greendot-500 text-white font-semibold">Donate</a>
+          <button id="mobileMenuBtn" class="md:hidden p-2 rounded-md hover:bg-gray-100" aria-expanded="false">☰</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t bg-white">
+      <div class="px-4 py-3 space-y-1">
+        <a class="block py-2" href="#home">Home</a>
+        <a class="block py-2" href="#who">Who We Are</a>
+        <a class="block py-2" href="#programs">Programs</a>
+        <a class="block py-2" href="#donate">Donate</a>
+        <a class="block py-2" href="#events">Events</a>
+        <a class="block py-2" href="#blog">Blog</a>
+        <a class="block py-2" href="#member">Become a Member</a>
+        <a class="block py-2" href="#help">Need Help</a>
+        <a class="block py-2" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEARCH BAR (top) -->
+  <div id="searchBar" class="hidden fixed top-20 left-0 right-0 z-50 bg-white shadow p-4">
+    <div class="max-w-4xl mx-auto flex items-center gap-3">
+      <input id="siteSearch" placeholder="Search the site (pages, programs, blog posts, events, contacts...)" class="flex-1 px-4 py-3 border rounded-md" />
+      <button id="searchBtn" class="px-4 py-2 bg-greendot-500 text-white rounded-md">Search</button>
+      <button id="searchClose" class="px-3 py-2 rounded-md">Close</button>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="home" class="relative overflow-hidden">
+      <div class="bg-gray-900 hero-video">
+        <!-- lightweight placeholder video as background -->
+        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-50">
+          <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+        </video>
+
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white reveal">Empowering Lives. Building Futures.</h1>
+            <p class="mt-4 text-lg md:text-xl text-white/90 max-w-2xl mx-auto reveal">Greendot NG Foundation provides education, medical support, community welfare and emergency relief across Nigeria.</p>
+
+            <div class="mt-6 flex justify-center gap-3 reveal">
+              <a href="#donate" class="px-5 py-3 rounded-full bg-greendot-500 text-white font-semibold">Donate Now</a>
+              <a href="#member" class="px-5 py-3 rounded-full bg-orangedot-500 text-white font-semibold">Become a Member</a>
+              <a href="#programs" class="px-5 py-3 rounded-full bg-reddot-500 text-white font-semibold">Apply For Programs</a>
+            </div>
+            <div class="mt-6 reveal text-sm text-white/80">
+              <span class="inline-flex items-center gap-2">📈 Impact: <strong>1,200+</strong> beneficiaries (2024)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO WE ARE -->
+    <section id="who" class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="text-3xl font-bold accent-text">Who We Are</h2>
+          <p class="mt-4 text-gray-700">Greendot NG Foundation is registered in Nigeria and focuses on education, health support (including cancer assistance), and community welfare. We partner with local leaders to deliver measurable outcomes.</p>
+          <div class="mt-4 flex gap-3">
+            <a class="px-4 py-2 bg-greendot-500 text-white rounded" href="#programs">Programs</a>
+            <a class="px-4 py-2 bg-orangedot-500 text-white rounded" href="#events">Events</a>
+          </div>
+        </div>
+        <div><img src="https://placehold.co/800x500/10b981/ffffff?text=Team+in+Action" alt="team" class="rounded-lg shadow-lg w-full object-cover"></div>
+      </div>
+    </section>
+
+    <!-- HERO CTA: Join us to support humanity -->
+    <section class="py-12 bg-[url('https://placehold.co/1600x400/064e3b/ffffff?text=Flower+Pattern')] bg-cover text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal text-center">
+        <h3 class="text-2xl font-bold">Join us to support humanity</h3>
+        <p class="mt-3">Donate, Volunteer, or Start a Fundraiser — every action matters.</p>
+        <div class="mt-6 flex flex-wrap justify-center gap-4">
+          <a href="#donate" class="flex items-center gap-2 px-4 py-3 rounded bg-greendot-500">💚 Donate</a>
+          <a href="#member" class="flex items-center gap-2 px-4 py-3 rounded bg-orangedot-500">🤝 Volunteer</a>
+          <a href="#fundraiser" class="flex items-center gap-2 px-4 py-3 rounded bg-reddot-500">🎗️ Start Fundraiser</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS (Need Help target) -->
+    <section id="programs" class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold">Programs & How to Apply</h3>
+          <div class="text-sm text-gray-600">Find a program that suits your situation and apply online.</div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Program card: each opens a detail with options -->
+          <article class="bg-white p-6 rounded-xl shadow hover:shadow-xl">
+            <h4 class="font-semibold mb-2">Education Support</h4>
+            <p class="text-sm text-gray-600 mb-4">Scholarships, school supplies, mentorship and tuition support.</p>
+            <ul class="text-sm mb-4 space-y-1 text-gray-700">
+              <li>• Primary School Scholarship</li>
+              <li>• Secondary School Grants</li>
+              <li>• Vocational Training Support</li>
+            </ul>
+            <div class="flex gap-2">
+              <a href="#apply-education" class="px-3 py-2 bg-greendot-500 text-white rounded">Apply</a>
+              <button class="px-3 py-2 border rounded" onclick="showProgramDetail('education')">Details</button>
+            </div>
+          </article>
+
+          <article class="bg-white p-6 rounded-xl shadow hover:shadow-xl">
+            <h4 class="font-semibold mb-2">Health & Medical Aid</h4>
+            <p class="text-sm text-gray-600 mb-4">Cancer patient support, medication assistance and medical outreaches.</p>
+            <ul class="text-sm mb-4 space-y-1 text-gray-700">
+              <li>• Cancer Treatment Grants</li>
+              <li>• Free Medical Camps</li>
+              <li>• Medication Subsidies</li>
+            </ul>
+            <div class="flex gap-2">
+              <a href="#apply-health" class="px-3 py-2 bg-reddot-500 text-white rounded">Apply</a>
+              <button class="px-3 py-2 border rounded" onclick="showProgramDetail('health')">Details</button>
+            </div>
+          </article>
+
+          <article class="bg-white p-6 rounded-xl shadow hover:shadow-xl">
+            <h4 class="font-semibold mb-2">Economic Relief</h4>
+            <p class="text-sm text-gray-600 mb-4">Short-term support to make ends meet, small grants, micro-loans, and livelihood support.</p>
+            <ul class="text-sm mb-4 space-y-1 text-gray-700">
+              <li>• Emergency Cash Grants</li>
+              <li>• Small Business Support</li>
+              <li>• Skills Training</li>
+            </ul>
+            <div class="flex gap-2">
+              <a href="#apply-relief" class="px-3 py-2 bg-orangedot-500 text-white rounded">Apply</a>
+              <button class="px-3 py-2 border rounded" onclick="showProgramDetail('relief')">Details</button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Program detail drawer (hidden by default) -->
+        <div id="programDetail" class="mt-8 hidden bg-white p-6 rounded-xl shadow">
+          <div class="flex justify-between items-start">
+            <div>
+              <h4 id="programTitle" class="text-xl font-semibold"></h4>
+              <p id="programDesc" class="text-gray-600 mt-2"></p>
+            </div>
+            <button onclick="closeProgramDetail()" class="px-3 py-1 border rounded">Close</button>
+          </div>
+
+          <div id="programOptions" class="mt-4 grid md:grid-cols-2 gap-4"></div>
+          <div class="mt-4">
+            <a id="programApplyLink" href="#member" class="px-4 py-2 bg-greendot-500 text-white rounded">Apply Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold">Upcoming Events</h3>
+          <a href="#events" class="text-sm text-greendot-700">See all events →</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="bg-gray-50 rounded-xl overflow-hidden shadow">
+            <img src="https://placehold.co/600x320/10b981/ffffff?text=School+Build" class="w-full h-44 object-cover" alt="">
+            <div class="p-4"><h4 class="font-semibold">Community School Opening</h4><p class="text-sm text-gray-600 mt-1">Dec 10, 2025 — Join us to celebrate.</p></div>
+          </article>
+          <article class="bg-gray-50 rounded-xl overflow-hidden shadow">
+            <img src="https://placehold.co/600x320/f97316/ffffff?text=Medical+Camp" class="w-full h-44 object-cover" alt="">
+            <div class="p-4"><h4 class="font-semibold">Rural Medical Outreach</h4><p class="text-sm text-gray-600 mt-1">Jan 15, 2026 — Free checks.</p></div>
+          </article>
+          <article class="bg-gray-50 rounded-xl overflow-hidden shadow">
+            <img src="https://placehold.co/600x320/ef4444/ffffff?text=Awareness" class="w-full h-44 object-cover" alt="">
+            <div class="p-4"><h4 class="font-semibold">Cancer Awareness Walk</h4><p class="text-sm text-gray-600 mt-1">Feb 22, 2026 — Walk with us.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT / STATS -->
+    <section class="py-12 bg-greendot-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div class="bg-white p-6 rounded-xl shadow"><div class="text-3xl font-bold text-greendot-500" id="statBeneficiaries">1,200+</div><div class="text-sm text-gray-600">Beneficiaries</div></div>
+          <div class="bg-white p-6 rounded-xl shadow"><div class="text-3xl font-bold text-orangedot-500" id="statProjects">45</div><div class="text-sm text-gray-600">Projects</div></div>
+          <div class="bg-white p-6 rounded-xl shadow"><div class="text-3xl font-bold text-reddot-500" id="statVolunteers">120</div><div class="text-sm text-gray-600">Volunteers</div></div>
+          <div class="bg-white p-6 rounded-xl shadow"><div class="text-3xl font-bold text-gray-900" id="statTransparency">100%</div><div class="text-sm text-gray-600">Transparency</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS / SUCCESS STORIES -->
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+        <h3 class="text-2xl font-bold mb-4">Success Stories</h3>
+        <div id="testimonialSlider" class="relative">
+          <div class="overflow-hidden rounded-xl shadow">
+            <div class="p-6 bg-gray-50" id="testimonialContent"> 
+              <p class="text-gray-700" id="testimonialText">"Thanks to Greendot, I was able to return to school and now I have dreams again." — Amina, beneficiary</p>
+              <div class="mt-4 text-sm text-gray-500" id="testimonialName">Amina — Kaduna</div>
+            </div>
+          </div>
+          <div class="flex justify-between mt-4">
+            <button id="prevTestimonial" class="px-3 py-2 border rounded">Prev</button>
+            <button id="nextTestimonial" class="px-3 py-2 border rounded">Next</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG & GALLERY -->
+    <section id="blog" class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="bg-white rounded-xl p-6 shadow"><h4 class="font-semibold">How Education Changes Communities</h4><p class="text-sm text-gray-600 mt-2">Read about our scholarship impact.</p></article>
+          <article class="bg-white rounded-xl p-6 shadow"><h4 class="font-semibold">Medical Outreach Highlights</h4><p class="text-sm text-gray-600 mt-2">What we learned in the field.</p></article>
+          <article class="bg-white rounded-xl p-6 shadow"><h4 class="font-semibold">Volunteer Spotlight</h4><p class="text-sm text-gray-600 mt-2">Meet our volunteers.</p></article>
+        </div>
+
+        <div class="mt-8">
+          <h4 class="text-xl font-semibold mb-3">Photo Gallery</h4>
+          <div class="grid md:grid-cols-4 gap-3">
+            <img src="https://placehold.co/400x300/10b981/ffffff?text=Outreach" class="w-full h-40 object-cover rounded" alt="">
+            <img src="https://placehold.co/400x300/f97316/ffffff?text=Medical" class="w-full h-40 object-cover rounded" alt="">
+            <img src="https://placehold.co/400x300/ef4444/ffffff?text=Awareness" class="w-full h-40 object-cover rounded" alt="">
+            <img src="https://placehold.co/400x300/6366f1/ffffff?text=Volunteers" class="w-full h-40 object-cover rounded" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DONATE (with Paystack integration) -->
+    <section id="donate" class="py-16 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+        <h3 class="text-2xl font-bold mb-4">Support Our Work</h3>
+        <p class="text-gray-600 mb-6">Pick a tier or enter a custom amount — donations help fund education, health, and relief projects.</p>
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow">
+          <div class="flex gap-2 flex-wrap mb-4">
+            <button class="tier-btn px-4 py-2 rounded border" data-amount="5000">₦5,000 — Feed 1 child</button>
+            <button class="tier-btn px-4 py-2 rounded border" data-amount="25000">₦25,000 — Feed 5 children</button>
+            <button class="tier-btn px-4 py-2 rounded border" data-amount="100000">₦100,000 — Support a health camp</button>
+          </div>
+
+          <form id="paystackForm">
+            <label class="block text-sm">Amount (₦)</label>
+            <input id="payAmount" type="number" min="100" placeholder="e.g., 5000" class="w-full px-4 py-2 border rounded mb-3" required>
+            <label class="block text-sm">Your Name</label>
+            <input id="payName" type="text" placeholder="Full name" class="w-full px-4 py-2 border rounded mb-3">
+            <label class="block text-sm">Email</label>
+            <input id="payEmail" type="email" placeholder="you@example.com" class="w-full px-4 py-2 border rounded mb-4" required>
+
+            <div class="flex gap-2">
+              <button id="payBtn" type="submit" class="px-4 py-2 bg-greendot-500 text-white rounded">Donate with Card (Paystack)</button>
+              <button id="payLater" type="button" class="px-4 py-2 border rounded">Donate later</button>
+            </div>
+          </form>
+
+          <div id="payMsg" class="mt-4 hidden p-3 rounded"></div>
+        </div>
+
+        <p class="text-xs text-gray-500 mt-2">Note: This page uses Paystack test key for demo. For production, implement server-side verification.</p>
+      </div>
+    </section>
+
+    <!-- MEMBER REGISTRATION (with certificate generation) -->
+    <section id="member" class="py-16 bg-greendot-50">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+        <h3 class="text-2xl font-bold mb-4">Become a Member</h3>
+        <div class="bg-white p-6 rounded-xl shadow">
+          <form id="memberForm">
+            <div class="grid md:grid-cols-2 gap-3">
+              <input id="m_fullname" required placeholder="Full name" class="px-3 py-2 border rounded">
+              <input id="m_email" required type="email" placeholder="Email" class="px-3 py-2 border rounded">
+              <input id="m_phone" required placeholder="Phone" class="px-3 py-2 border rounded">
+              <input id="m_dob" type="date" class="px-3 py-2 border rounded">
+            </div>
+
+            <input id="m_address" placeholder="Address" class="mt-3 px-3 py-2 border rounded w-full">
+            <select id="m_gender" class="mt-3 px-3 py-2 border rounded w-full">
+              <option value="">Prefer not to say</option><option>Female</option><option>Male</option><option>Non-binary</option>
+            </select>
+
+            <label class="mt-3 block text-sm">Upload Photo (optional)</label>
+            <input id="m_photo" type="file" accept="image/*" class="mt-2">
+
+            <textarea id="m_reason" placeholder="Why do you want to join?" class="mt-3 px-3 py-2 border rounded w-full"></textarea>
+
+            <div class="flex gap-2 mt-4">
+              <button type="submit" class="px-4 py-2 bg-orangedot-500 text-white rounded">Register</button>
+              <button type="button" id="m_clear" class="px-4 py-2 border rounded">Clear</button>
+            </div>
+          </form>
+
+          <div id="memberMsg" class="mt-4 hidden p-3 rounded"></div>
+        </div>
+
+        <!-- Certificate preview area -->
+        <div id="certificateArea" class="mt-6 hidden">
+          <h4 class="font-semibold mb-2">Membership Certificate (Preview)</h4>
+          <div id="certificatePreview" class="certificate"></div>
+          <div class="mt-3 flex gap-2">
+            <button id="downloadCert" class="px-4 py-2 bg-greendot-500 text-white rounded">Download Certificate (PNG)</button>
+            <button id="printCert" class="px-4 py-2 border rounded">Print</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-12 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+        <h3 class="text-2xl font-bold mb-4">FAQ</h3>
+        <div class="space-y-3">
+          <details class="p-4 border rounded"><summary class="font-semibold cursor-pointer">How do I donate?</summary><div class="mt-2 text-sm text-gray-600">Use the Donate section — choose a tier or enter your amount; you can use Paystack for card payments.</div></details>
+          <details class="p-4 border rounded"><summary class="font-semibold">How are donations used?</summary><div class="mt-2 text-sm text-gray-600">Donations fund our programs: education, health, and community welfare. We publish quarterly reports.</div></details>
+          <details class="p-4 border rounded"><summary class="font-semibold">Can I volunteer?</summary><div class="mt-2 text-sm text-gray-600">Yes — use the Become a Member form and indicate volunteer in your message.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS / SPONSORS -->
+    <section class="py-12 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+        <h3 class="text-2xl font-bold mb-4">Partners & Sponsors</h3>
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-4 items-center">
+          <div class="p-4 bg-white rounded shadow text-center">Partner 1</div>
+          <div class="p-4 bg-white rounded shadow text-center">Partner 2</div>
+          <div class="p-4 bg-white rounded shadow text-center">Partner 3</div>
+          <div class="p-4 bg-white rounded shadow text-center">Partner 4</div>
+          <div class="p-4 bg-white rounded shadow text-center">Partner 5</div>
+          <div class="p-4 bg-white rounded shadow text-center">Partner 6</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT with Join Us bold write-up -->
+    <section id="contact" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal grid md:grid-cols-3 gap-6">
+        <div class="md:col-span-1">
+          <h3 class="text-2xl font-bold">Join us to support humanity</h3>
+          <p class="mt-2 text-gray-600">Donate, Volunteer, or Start a Fundraiser. Reach out and be part of change.</p>
+          <div class="mt-4 space-y-2">
+            <div class="flex items-center gap-2"><span class="text-greendot-500">📧</span> <a href="mailto:greendotngfoundation@gmail.com" class="text-sm">greendotngfoundation@gmail.com</a></div>
+            <div class="flex items-center gap-2"><span class="text-greendot-500">📞</span> <a href="https://wa.me/2348033544831" target="_blank" class="text-sm">08033544831 (WhatsApp)</a></div>
+            <div class="flex items-center gap-2"><span class="text-greendot-500">📞</span> <a href="tel:+2348033639107" class="text-sm">08033639107</a></div>
+            <div class="flex items-center gap-2"><span class="text-greendot-500">📍</span> <span class="text-sm">82 Creek Road, Port Harcourt, Rivers State</span></div>
+          </div>
+
+          <div class="mt-6 flex gap-3">
+            <a href="https://facebook.com" target="_blank" class="p-2 rounded bg-blue-600 text-white">Facebook</a>
+            <a href="https://instagram.com" target="_blank" class="p-2 rounded bg-pink-500 text-white">Instagram</a>
+            <a href="https://x.com" target="_blank" class="p-2 rounded bg-sky-500 text-white">X</a>
+            <a href="https://wa.me/2348033544831" target="_blank" class="p-2 rounded bg-green-600 text-white">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="md:col-span-2">
+          <h4 class="text-lg font-semibold">Send a message</h4>
+          <form id="contactForm" class="mt-3 grid md:grid-cols-2 gap-3">
+            <input id="c_name" placeholder="Your name" class="px-3 py-2 border rounded">
+            <input id="c_email" placeholder="Email" class="px-3 py-2 border rounded">
+            <input id="c_phone" placeholder="Phone (optional)" class="px-3 py-2 border rounded">
+            <select id="c_topic" class="px-3 py-2 border rounded">
+              <option>General Inquiry</option><option>Volunteer</option><option>Donation</option><option>Partnership</option>
+            </select>
+            <textarea id="c_message" placeholder="Your message" class="md:col-span-2 px-3 py-2 border rounded"></textarea>
+            <div class="md:col-span-2 flex gap-3 items-center">
+              <button id="contactSend" class="px-4 py-2 bg-greendot-500 text-white rounded">Send</button>
+              <div id="contactResult" class="text-sm hidden"></div>
+              <!-- email shortcut icon insert -->
+              <button id="openEmail" class="px-3 py-2 border rounded" title="Open your email after registration">✉️</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="py-12 bg-gray-100">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 reveal text-center">
+        <h4 class="text-xl font-bold">Stay Updated</h4>
+        <p class="mt-2 text-gray-600">Sign up to get emails about events, impact reports and ways to help.</p>
+        <form id="newsletterForm" class="mt-4 flex gap-2 justify-center">
+          <input id="newsEmail" type="email" placeholder="Email address" class="px-4 py-2 border rounded" required>
+          <button class="px-4 py-2 bg-greendot-500 text-white rounded">Subscribe</button>
+        </form>
+        <div id="newsletterMsg" class="mt-3 text-sm hidden"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Floating Buttons -->
+  <div class="float-btn">
+    <a id="whatsappFloater" href="https://wa.me/2348033544831?text=Hello%20Greendot" target="_blank" class="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-green-600 text-white shadow">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="wa" class="w-5 h-5"> <span class="hidden sm:inline">WhatsApp</span>
+    </a>
+  </div>
+  <div class="float-btn float-btn--help">
+    <button id="needHelpFloater" class="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-orangedot-500 text-white shadow">
+      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="help" class="w-5 h-5"> <span class="hidden sm:inline">Need Help</span>
+    </button>
+  </div>
+  <div class="float-btn" style="right:16px;bottom:84px">
+    <a id="donateFloater" href="#donate" class="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-reddot-500 text-white shadow">
+      <img src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png" alt="heart" class="w-5 h-5"> Donate
+    </a>
+  </div>
+
+  <!-- Help modal (program list) -->
+  <div id="helpModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl w-full max-w-3xl p-6">
+      <div class="flex justify-between items-start">
+        <h4 class="text-lg font-semibold">Need Help? Which program fits your situation?</h4>
+        <button id="closeHelp" class="text-gray-500">✕</button>
+      </div>
+      <div class="mt-4 grid md:grid-cols-2 gap-4">
+        <div>
+          <h5 class="font-semibold mb-2">How can you apply?</h5>
+          <p class="text-sm text-gray-600">Choose the category that best describes your need — each category has sub-options and an online application link.</p>
+          <ul class="mt-3 space-y-2 text-sm text-gray-700">
+            <li><button class="px-3 py-2 border rounded w-full text-left" onclick="showProgramDetail('education')">Education Support</button></li>
+            <li><button class="px-3 py-2 border rounded w-full text-left" onclick="showProgramDetail('health')">Health & Medical Aid</button></li>
+            <li><button class="px-3 py-2 border rounded w-full text-left" onclick="showProgramDetail('relief')">Emergency / Economic Relief</button></li>
+            <li><button class="px-3 py-2 border rounded w-full text-left" onclick="showProgramDetail('livelihood')">Livelihood & Skills</button></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-semibold mb-2">Quick apply</h5>
+          <p class="text-sm text-gray-600 mb-2">Click any program to see options and apply online.</p>
+          <div id="helpProgramOptions" class="space-y-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Member success modal -->
+  <div id="memberSuccess" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+    <div class="bg-white p-6 rounded-xl max-w-md w-full text-center">
+      <h4 class="text-xl font-bold text-greendot-700">Registration Successful</h4>
+      <p id="memberSuccessText" class="mt-3 text-gray-700">Thanks! We sent a confirmation to your email (demo).</p>
+      <div class="mt-4">
+        <button id="closeMemberSuccess" class="px-4 py-2 bg-greendot-500 text-white rounded">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Donation success -->
+  <div id="donationSuccess" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+    <div class="bg-white p-6 rounded-xl max-w-md w-full text-center">
+      <h4 class="text-xl font-bold text-greendot-700">Donation Received</h4>
+      <p id="donationSuccessText" class="mt-3 text-gray-700">Thank you! Your simulated donation was successful.</p>
+      <div class="mt-4">
+        <button id="closeDonationSuccess" class="px-4 py-2 bg-greendot-500 text-white rounded">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy & donor privacy -->
+  <footer class="bg-gray-900 text-gray-200 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-6">
+      <div>
+        <div class="font-semibold">Greendot NG Foundation</div>
+        <div class="text-sm mt-2">82 Creek Road, Port Harcourt, Rivers State<br>greendotngfoundation@gmail.com</div>
+      </div>
+      <div>
+        <div class="font-semibold">Quick Links</div>
+        <div class="mt-2 space-y-1 text-sm">
+          <a href="#donate" class="block hover:text-white">Donate</a>
+          <a href="#programs" class="block hover:text-white">Programs</a>
+          <a href="#member" class="block hover:text-white">Membership</a>
+        </div>
+      </div>
+      <div>
+        <div class="font-semibold">Legal</div>
+        <a href="#privacy" id="privacyLink" class="block text-sm mt-2">Privacy Policy</a>
+        <a href="#donorPrivacy" id="donorPrivacyLink" class="block text-sm mt-1">Donor Privacy Policy</a>
+      </div>
+    </div>
+
+    <div class="text-center text-xs text-gray-500 mt-6">© <span id="year"></span> Greendot NG Foundation — All Rights Reserved</div>
+  </footer>
+
+  <!-- Paystack inline script -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+  <!-- App JS -->
+  <script>
+    /************* Globals *************/
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // small helpers
+    const show = el => el.classList.remove('hidden');
+    const hide = el => el.classList.add('hidden');
+
+    /************* Mobile menu *************/
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let mobileOpen = false;
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileOpen = !mobileOpen;
+      if(mobileOpen) mobileMenu.classList.remove('hidden'); else mobileMenu.classList.add('hidden');
+    });
+
+    /************* Reveal on scroll *************/
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.15});
+    reveals.forEach(r => io.observe(r));
+
+    /************* Search *************/
+    const searchToggle = document.getElementById('searchToggle');
+    const searchBar = document.getElementById('searchBar');
+    const searchClose = document.getElementById('searchClose');
+    const siteSearch = document.getElementById('siteSearch');
+
+    searchToggle.addEventListener('click', () => searchBar.classList.toggle('hidden'));
+    searchClose.addEventListener('click', () => searchBar.classList.add('hidden'));
+
+    // site-wide search (simple client-side search over in-page items)
+    const siteIndex = [];
+    // build index from headings and articles
+    function buildIndex(){
+      siteIndex.length = 0;
+      document.querySelectorAll('h1,h2,h3,h4,h5, p, article').forEach(node => {
+        const text = node.innerText?.trim();
+        if(text && text.length>10){
+          siteIndex.push({text, node});
+        }
+      });
+    }
+    buildIndex();
+
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      const q = siteSearch.value.trim().toLowerCase();
+      if(!q) return alert('Type something to search');
+      // find matches
+      const matches = siteIndex.filter(i=> i.text.toLowerCase().includes(q)).slice(0,8);
+      if(matches.length===0) return alert('No results found on this page');
+      // scroll to first match
+      matches[0].node.scrollIntoView({behavior:'smooth', block:'center'});
+      searchBar.classList.add('hidden');
+    });
+
+    /************* Need Help (floating) *************/
+    const helpBtn = document.getElementById('needHelpFloater');
+    const helpModal = document.getElementById('helpModal');
+    const closeHelp = document.getElementById('closeHelp');
+    helpBtn.addEventListener('click', ()=> helpModal.classList.remove('hidden'));
+    closeHelp.addEventListener('click', ()=> helpModal.classList.add('hidden'));
+
+    function showProgramDetail(key){
+      const map = {
+        education:{title:'Education Support', desc:'Apply for scholarships, school grants and vocational training.', options:['Primary Scholarship','Secondary Grants','Vocational Training']},
+        health:{title:'Health & Medical Aid', desc:'Apply for patient support, treatment grants and medical outreach invites.', options:['Cancer Treatment Grant','Medication Subsidy','Medical Camp Invite']},
+        relief:{title:'Emergency / Economic Relief', desc:'Emergency cash grants, small business support and skills programs.', options:['Emergency Cash','Business Support','Livelihood Training']},
+        livelihood:{title:'Livelihood & Skills', desc:'Programs to help you earn a living and build resilience.', options:['Skill Training','Microgrants','Market Access']}
+      };
+      const p = map[key] || map['education'];
+      document.getElementById('programTitle').innerText = p.title;
+      document.getElementById('programDesc').innerText = p.desc;
+      const optDiv = document.getElementById('programOptions');
+      optDiv.innerHTML = '';
+      p.options.forEach(o=>{
+        const btn = document.createElement('button');
+        btn.className='px-3 py-2 border rounded';
+        btn.innerText = o + ' — Apply';
+        btn.onclick = ()=> { document.getElementById('programApplyLink').click(); };
+        optDiv.appendChild(btn);
+      });
+      show(document.getElementById('programDetail'));
+      // hide help modal if open
+      helpModal.classList.add('hidden');
+      window.scrollTo({top: document.getElementById('programs').offsetTop - 80, behavior:'smooth'});
+    }
+    function closeProgramDetail(){ hide(document.getElementById('programDetail')); }
+
+    /************* Program quick area in help modal *************/
+    const helpProgramOptions = document.getElementById('helpProgramOptions');
+    ['Education','Health','Relief','Livelihood'].forEach((p)=> {
+      const el = document.createElement('div');
+      el.className = 'flex gap-2';
+      el.innerHTML = `<div class="grow"><strong>${p}</strong><div class="text-xs text-gray-600">Apply &amp; get support.</div></div><div><button class="px-3 py-1 border rounded" onclick="showProgramDetail('${p.toLowerCase()}')">Open</button></div>`;
+      helpProgramOptions.appendChild(el);
+    });
+
+    /************* Testimonials slider (very small) *************/
+    const testimonials = [
+      {text:'Thanks to Greendot I returned to school and now have hope again.', name:'Amina — Kaduna'},
+      {text:'They supported my father’s treatment; we are forever grateful.', name:"Simon — Lagos"},
+      {text:'Volunteering changed my life and taught me leadership.', name:'Chiamaka — Enugu'}
+    ];
+    let tIndex = 0;
+    function renderTestimonial(){
+      document.getElementById('testimonialText').innerText = `\"${testimonials[tIndex].text}\"`;
+      document.getElementById('testimonialName').innerText = testimonials[tIndex].name;
+    }
+    document.getElementById('prevTestimonial').addEventListener('click', ()=> { tIndex = (tIndex-1+testimonials.length)%testimonials.length; renderTestimonial();});
+    document.getElementById('nextTestimonial').addEventListener('click', ()=> { tIndex = (tIndex+1)%testimonials.length; renderTestimonial();});
+    renderTestimonial();
+
+    /************* Donation tiers quick buttons *************/
+    document.querySelectorAll('.tier-btn').forEach(btn => {
+      btn.addEventListener('click', ()=> {
+        document.getElementById('payAmount').value = btn.getAttribute('data-amount');
+      });
+    });
+
+    /************* Paystack integration (client-only demo) *************/
+    // NOTE: use your test public key below. For production, do server verification with secret key.
+    const PAYSTACK_PUBLIC_KEY = 'pk_test_15359ac9d5720105683603c9bcf2a22fd80d8131';
+    const payForm = document.getElementById('paystackForm');
+    payForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const amount = parseFloat(document.getElementById('payAmount').value);
+      const email = document.getElementById('payEmail').value;
+      const name = document.getElementById('payName').value || 'Supporter';
+      if(!amount || amount < 100 || !email) {
+        alert('Enter a valid amount (>= ₦100) and your email.');
+        return;
+      }
+      // open Paystack inline
+      const handler = PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY,
+        email: email,
+        amount: Math.round(amount) * 100, // Kobo
+        currency: 'NGN',
+        metadata: { custom_fields: [{display_name: "Donor Name", variable_name: "donor_name", value: name}] },
+        callback: function(response){
+          // response.reference
+          document.getElementById('donationSuccessText').innerText = `Thank you ${name}! Payment reference: ${response.reference}. We'll send a receipt to ${email}.`;
+          show(document.getElementById('donationSuccess'));
+        },
+        onClose: function(){
+          alert('Payment window closed.');
+        }
+      });
+      handler.openIframe();
+    });
+
+    /************* Member registration with certificate generation *************/
+    const memberForm = document.getElementById('memberForm');
+    const memberMsg = document.getElementById('memberMsg');
+    const memberSuccess = document.getElementById('memberSuccess');
+    const certificateArea = document.getElementById('certificateArea');
+    const certificatePreview = document.getElementById('certificatePreview');
+
+    memberForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('m_fullname').value.trim();
+      const email = document.getElementById('m_email').value.trim();
+      if(!name || !email) { memberMsg.className='mt-3 p-3 bg-red-50 text-red-700 rounded'; memberMsg.innerText='Please include name and email.'; show(memberMsg); return; }
+      // show success modal
+      document.getElementById('memberSuccessText').innerHTML = `Thank you <strong>${name}</strong> — we've received your registration. A confirmation will be sent to <strong>${email}</strong>.`;
+      show(memberSuccess);
+      // generate certificate HTML preview
+      certificatePreview.innerHTML = `<div style="text-align:center"><h2 style="color:#059669;margin-bottom:4px">Greendot NG Foundation</h2><h3 style="margin-top:6px">Certificate of Membership</h3><p style="margin-top:12px">This certifies that <strong>${name}</strong> is a registered member of Greendot NG Foundation.</p><p style="margin-top:16px;font-size:.9rem">Issued on ${new Date().toLocaleDateString()}</p></div>`;
+      show(certificateArea);
+      // prepare email send (mailto fallback)
+      const subject = encodeURIComponent('Greendot NG Membership Registration');
+      const body = encodeURIComponent(`Member name: ${name}\nEmail: ${email}\nThank you for joining!`);
+      // mailto to send message to admin (note: mailto opens client)
+      // window.location.href = `mailto:greendotngfoundation@gmail.com?subject=${subject}&body=${body}`;
+      memberForm.reset();
+    });
+
+    document.getElementById('closeMemberSuccess').addEventListener('click', ()=> hide(memberSuccess));
+    document.getElementById('m_clear').addEventListener('click', ()=> memberForm.reset());
+
+    // certificate download (basic canvas conversion)
+    document.getElementById('downloadCert').addEventListener('click', async ()=>{
+      // render certificatePreview to image using html2canvas would be ideal; but we use simple SVG approach
+      const html = certificatePreview.innerHTML;
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='600'><foreignObject width='100%' height='100%'><div xmlns='http://www.w3.org/1999/xhtml' style='font-family:Inter;padding:40px;'>${html}</div></foreignObject></svg>`;
+      const blob = new Blob([svg], {type: 'image/svg+xml;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'greendot-membership-certificate.svg'; a.click(); URL.revokeObjectURL(url);
+    });
+    document.getElementById('printCert').addEventListener('click', ()=> {
+      const w = window.open('','_blank','width=800,height=600'); w.document.write('<html><head><title>Certificate</title></head><body>' + certificatePreview.innerHTML + '</body></html>'); w.document.close(); w.print();
+    });
+
+    /************* Contact form send (mailto fallback) *************/
+    document.getElementById('contactSend').addEventListener('click', function(e){
+      e.preventDefault();
+      const name = document.getElementById('c_name').value || 'Friend';
+      const email = document.getElementById('c_email').value || '';
+      const phone = document.getElementById('c_phone').value || '';
+      const topic = document.getElementById('c_topic').value || 'General';
+      const message = document.getElementById('c_message').value || '';
+      const result = document.getElementById('contactResult');
+      if(!email || !message){
+        result.className='text-sm text-red-600'; result.innerText='Please include your email and message.'; show(result); return;
+      }
+      // Prepare mailto to send to greendotngfoundation@gmail.com
+      const subject = encodeURIComponent(`[Website Contact] ${topic} — ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nTopic: ${topic}\n\nMessage:\n${message}`);
+      // open mail client
+      window.location.href = `mailto:greendotngfoundation@gmail.com?subject=${subject}&body=${body}`;
+      result.className='text-sm text-green-700'; result.innerText='Your email client opened to send the message. If it did not, copy and send to greendotngfoundation@gmail.com';
+      show(result);
+      // autofill search email feature: place email into search box for demonstration
+      document.getElementById('siteSearch').value = email;
+    });
+
+    /************* Newsletter subscription (client demo) *************/
+    document.getElementById('newsletterForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const email = document.getElementById('newsEmail').value || '';
+      if(!email){ alert('Enter your email'); return; }
+      document.getElementById('newsletterMsg').className='mt-3 text-sm text-green-700'; document.getElementById('newsletterMsg').innerText = `Thanks! ${email} is subscribed (demo).`; show(document.getElementById('newsletterMsg'));
+      // for production, post to Mailchimp/SendGrid or your backend
+      this.reset();
+    });
+
+    /************* Floating WhatsApp & link icons already set in HTML *************/
+
+    /************* Light / Dark Theme toggle *************/
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', ()=>{
+      document.body.classList.toggle('dark-mode');
+    });
+
+    /************* Simple auto-increment impact stats demo *************/
+    setTimeout(()=>{ document.getElementById('statBeneficiaries').innerText = '1,350+'; document.getElementById('statProjects').innerText='52'; }, 1200);
+
+    /************* Privacy links placeholders *************/
+    document.getElementById('privacyLink').addEventListener('click', ()=>{
+      alert('Privacy Policy: Copy privacy text from the repo or open donor-privacy.html in the repo (production).');
+    });
+    document.getElementById('donorPrivacyLink').addEventListener('click', ()=>{
+      alert('Donor Privacy Policy: Copy donor privacy text from the repo or open donor-privacy.html in the repo (production).');
+    });
+
+    /************* Search auto-fill email icon open (button) *************/
+    document.getElementById('openEmail').addEventListener('click', () => {
+      // open default mail client with search email inserted (demo)
+      const email = document.getElementById('m_email')?.value || document.getElementById('c_email')?.value || '';
+      if(email) {
+        window.location.href = `mailto:${email}`;
+      } else {
+        alert('No email available to open. After successful registration, this will auto-fill.');
+      }
+    });
+
+    /************* Minor UI niceties *************/
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape'){ document.querySelectorAll('#helpModal,#memberSuccess,#donationSuccess').forEach(el=>el.classList.add('hidden')); }
+    });
+
+    // mobile menu close when link clicked
+    document.querySelectorAll('#mobileMenu a').forEach(a=>a.addEventListener('click', ()=> mobileMenu.classList.add('hidden')));
+  </script>
+</body>
+  </html>
