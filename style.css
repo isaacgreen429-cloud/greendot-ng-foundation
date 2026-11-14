@@ -1,55 +1,51 @@
-/* style.css – Greendot_Ng_Foundation */
-
-/* ---------- GLOBAL STYLES ---------- */
+/* Greendot NG Foundation — site-wide styles */
 html {
   scroll-behavior: smooth;
 }
+
 body {
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
 }
 
-/* ---------- ANIMATIONS ---------- */
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+button,
+a {
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
 
-.animate-fadeIn {
-  animation: fadeIn 1.5s ease forwards;
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
 }
 
-/* ---------- SECTION SPACING ---------- */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(16, 185, 129, 0.45);
+  outline-offset: 2px;
+}
+
 section {
-  animation: fadeIn 1s ease forwards;
+  scroll-margin-top: 5rem;
 }
 
-/* ---------- BUTTON EFFECTS ---------- */
-button, a {
-  transition: all 0.3s ease-in-out;
-}
-
-/* ---------- HERO SECTION ---------- */
-video {
-  filter: brightness(70%);
-}
-
-h1, h2, h3 {
-  letter-spacing: 0.5px;
-}
-
-/* ---------- FOOTER ---------- */
 footer {
   background: linear-gradient(135deg, #166534, #065f46);
 }
 
-/* ---------- HOVER EFFECTS ---------- */
-.hover\:scale-105:hover {
-  transform: scale(1.05);
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-/* ---------- CARD EFFECTS ---------- */
-.shadow-lg:hover {
-  transform: translateY(-5px);
-  transition: transform 0.3s ease-in-out;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
