@@ -86,7 +86,7 @@ app.post("/api/newsletter", (req, res) => {
       subscribedAt: new Date().toISOString()
     });
     saveRecords("newsletter-subscriptions.json", subscriptions);
-    return res.status(201).json({ success: true, message: "Your newsletter subscription has been saved." });
+    return res.status(201).json({ success: true, message: "Your email has been added to the update list. Email updates will begin once our mailing service is configured." });
   } catch (error) {
     console.error("Newsletter storage failed:", error.message);
     return res.status(500).json({ message: "We could not save your subscription. Please try again later." });
